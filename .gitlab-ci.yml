@@ -1,0 +1,57 @@
+stages:
+  - deploy
+
+default:
+  image: debian:stable-slim
+
+variables:
+  # The runner will be able to pull your Zola theme when the strategy is
+  # set to "recursive".
+  GIT_SUBMODULE_STRATEGY: "recursive"
+
+  # If you don't set a version here, your site will be built with the latest
+  # version of Zola available in GitHub releases.
+  # Use the semver (x.y.z) format to specify a version. For example: "0.17.2" or "0.18.0".
+  ZOLA_VERSION:
+    description: "The version of Zola used to build the site."
+    value: "0.20.0"  # Specifying a fixed version for stability
+
+pages:
+  stage: deploy
+  script:
+    - apt-get update --assume-yes
+    - apt-get install --assume-yes --no-install-recommends wget ca-certificates
+    - |
+      ARCH=$(dpkg --print-architecture)
+      if [ "$ARCH" = "amd64" ]; then
+        ZOLA_ARCH="x86_64"
+      elif [ "$ARCH" = "arm64" ]; then
+        ZOLA_ARCH="aarch64"
+      else
+        echo "Unsupported architecture: $ARCH"
+        exit 1
+      fi
+      
+      ZOLA_FILE="zola-v${ZOLA_VERSION}-${ZOLA_ARCH}-unknown-linux-gnu.tar.gz"
+      ZOLA_URL="https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/${ZOLA_FILE}"
+      
+      echo "Downloading Zola for $ARCH architecture..."
+      wget -q "$ZOLA_URL"
+      
+      echo "Extracting Zola..."
+      tar -xzf "$ZOLA_FILE"
+      
+      echo "Building site..."
+      ./zola build
+
+  artifacts:
+    paths:
+      # This is the directory whose contents will be deployed to the GitLab Pages
+      # server.
+      # GitLab Pages expects a directory with this name by default.
+      - public
+
+  rules:
+    # This rule makes it so that your website is published and updated only when
+    # you push to the default branch of your repository (e.g. "master" or "main").
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
