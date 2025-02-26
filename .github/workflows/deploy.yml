@@ -1,0 +1,31 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]  # or master, depending on your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Zola
+        run: |
+          ZOLA_VERSION=0.20.0
+          ZOLA_ARCH=x86_64
+          wget -q "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-${ZOLA_ARCH}-unknown-linux-gnu.tar.gz"
+          tar -xzf "zola-v${ZOLA_VERSION}-${ZOLA_ARCH}-unknown-linux-gnu.tar.gz"
+          chmod +x zola
+
+      - name: Build site
+        run: ./zola build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
