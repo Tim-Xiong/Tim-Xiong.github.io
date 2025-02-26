@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://tim-xiong.github.io//sitemap.xml

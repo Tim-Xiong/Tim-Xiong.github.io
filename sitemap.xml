@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://tim-xiong.github.io/</loc>
+    </url>
+    <url>
+        <loc>https://tim-xiong.github.io/posts/</loc>
+    </url>
+    <url>
+        <loc>https://tim-xiong.github.io/posts/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://tim-xiong.github.io/posts/post-0/</loc>
+        <lastmod>2025-01-30</lastmod>
+    </url>
+    <url>
+        <loc>https://tim-xiong.github.io/posts/post-1/</loc>
+        <lastmod>2025-02-26</lastmod>
+    </url>
+</urlset>

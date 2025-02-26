@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="#ffffff" name="theme-color" />
+  <meta content="#da532c" name="msapplication-TileColor" />
+
+  
+  <link href='&#x2F;icons&#x2F;site.webmanifest' rel="manifest" />
+  
+  
+  <link color="#5bbad5" href='&#x2F;icons&#x2F;safari-pinned-tab.svg' rel="mask-icon" />
+  
+  
+  <link href='&#x2F;icons&#x2F;favicon-16x16.png' rel="icon" sizes="16x16" type="image/png" />
+  
+  
+  <link href='&#x2F;icons&#x2F;favicon-32x32.png' rel="icon" sizes="32x32" type="image/png" />
+  
+  
+  <link href='&#x2F;icons&#x2F;apple-touch-icon.png' rel="apple-touch-icon" sizes="180x180" />
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/themes/folio/galleria.folio.min.css" integrity="sha384-+rY0QD+LRnTOquDMzGa9lXU6jIwdiQuwCJQ2cdcW0qeP/0UbjQCZlXnRsUMA+9pH" crossorigin="anonymous">
+  
+
+  
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.1/css/academicons.min.css" integrity="sha384-FIue+PI4SsI9XfHCz8dBLg33b0c1fMJgNU3X//L26FYbGnlSEfWmNT7zgWc2N9b6" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin="anonymous">
+  <link href="https://tim-xiong.github.io/deep-thought.css" rel="stylesheet" />
+  
+  
+
+  <title>
+    
+ | Understanding Transformers from Scratch: A NumPy Implementation
+
+  </title>
+
+  
+  
+  
+
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css" integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" integrity="sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx" crossorigin="anonymous"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mathtex-script-type.min.js" integrity="sha384-jiBVvJ8NGGj5n7kJaiWwWp9AjC+Yh8rhZY3GtAX8yU28azcLgoRo4oukO87g7zDT" crossorigin="anonymous"></script>
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+  
+  
+</head>
+
+<body class="has-background-white">
+  <nav aria-label="section navigation" class="navbar is-light" role="navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item is-size-5 has-text-weight-bold" href="https:&#x2F;&#x2F;tim-xiong.github.io&#x2F;"></a>
+        <a aria-expanded="false" aria-label="menu" class="navbar-burger burger" data-target="navMenu" role="button">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-end has-text-centered">
+          
+          
+          
+          <a class="navbar-item has-text-weight-semibold" href="https:&#x2F;&#x2F;tim-xiong.github.io&#x2F;&#x2F;">
+            Home
+          </a>
+          
+          <a class="navbar-item has-text-weight-semibold" href="https:&#x2F;&#x2F;tim-xiong.github.io&#x2F;&#x2F;posts">
+            Posts
+          </a>
+          
+          
+          
+          <a class="navbar-item" id="nav-search" title="Search" data-target="#search-modal">
+            <span class="icon">
+              <i class="fas fa-search"></i>
+            </span>
+          </a>
+          <a class="navbar-item" id="dark-mode" title="Switch to dark theme">
+            <span class="icon">
+              <i class="fas fa-adjust"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+  
+
+  
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-8 is-offset-2">
+        <article class="box">
+          <h1 class="title">
+            Understanding Transformers from Scratch: A NumPy Implementation
+          </h1>
+          <p class="subtitle"></p>
+          <div class="columns is-multiline is-gapless">
+            <div class="column is-8">
+              
+<span class="icon-text has-text-grey">
+  <span class="icon">
+    <i class="fas fa-user"></i>
+  </span>
+  <span>Jinglong Xiong published on</span>
+  <span class="icon">
+    <i class="far fa-calendar-alt"></i>
+  </span>
+  <span><time datetime="2025-02-26">February 26, 2025</time></span>
+</span>
+
+            </div>
+            <div class="column is-4 has-text-right-desktop">
+              
+<span class="icon-text has-text-grey">
+  <span class="icon">
+    <i class="far fa-clock"></i>
+  </span>
+  <span>6 min,</span>
+  <span class="icon">
+    <i class="fas fa-pencil-alt"></i>
+  </span>
+  <span>1185 words</span>
+</span>
+
+            </div>
+            <div class="column">
+              
+            </div>
+            <div class="column has-text-right-desktop">
+              
+            </div>
+          </div>
+          <div class="content mt-2">
+            <h1 id="understanding-transformers-from-scratch-a-numpy-implementation">Understanding Transformers from Scratch: A NumPy Implementation</h1>
+<p>In this blog post, we'll dive deep into the Transformer architecture by examining a pure NumPy implementation. The Transformer, introduced in the paper <a href="https://arxiv.org/abs/1706.03762">"Attention Is All You Need"</a> by Vaswani et al., revolutionized natural language processing and has become the foundation for models like BERT, GPT, and T5.</p>
+<p>By implementing a Transformer using only NumPy, we can understand the core concepts without the abstraction layers of deep learning frameworks. Let's explore each component of the architecture, the mathematics behind it, and how it's implemented in code.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="https://tim-xiong.github.io/posts/post-1/#the-transformer-architecture">The Transformer Architecture</a></li>
+<li><a href="https://tim-xiong.github.io/posts/post-1/#layer-normalization">Layer Normalization</a></li>
+<li><a href="https://tim-xiong.github.io/posts/post-1/#multi-head-attention">Multi-Head Attention</a></li>
+<li><a href="https://tim-xiong.github.io/posts/post-1/#positional-encoding">Positional Encoding</a></li>
+<li><a href="https://tim-xiong.github.io/posts/post-1/#position-wise-feed-forward-networks">Position-wise Feed-Forward Networks</a></li>
+<li><a href="https://tim-xiong.github.io/posts/post-1/#encoder-and-decoder-layers">Encoder and Decoder Layers</a></li>
+<li><a href="https://tim-xiong.github.io/posts/post-1/#the-complete-transformer">The Complete Transformer</a></li>
+<li><a href="https://tim-xiong.github.io/posts/post-1/#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="the-transformer-architecture">The Transformer Architecture</h2>
+<p>The Transformer architecture consists of an encoder and a decoder, each composed of multiple identical layers. Unlike recurrent neural networks (RNNs), Transformers process the entire sequence in parallel, using attention mechanisms to capture dependencies between tokens.</p>
+<p><img src="https://miro.medium.com/max/700/1*BHzGVskWGS_3jEcYYi6miQ.png" alt="Transformer Architecture" /></p>
+<p>The key components of the Transformer are:</p>
+<ol>
+<li><strong>Multi-Head Attention</strong>: Allows the model to focus on different parts of the input sequence</li>
+<li><strong>Position-wise Feed-Forward Networks</strong>: Processes each position independently</li>
+<li><strong>Layer Normalization</strong>: Stabilizes training by normalizing activations</li>
+<li><strong>Positional Encoding</strong>: Adds information about token positions</li>
+<li><strong>Residual Connections</strong>: Helps with gradient flow during training</li>
+</ol>
+<p>Let's examine each component in detail.</p>
+<h2 id="layer-normalization">Layer Normalization</h2>
+<p>Layer normalization normalizes the activations of the previous layer for each given example in a batch independently, rather than across a batch like batch normalization.</p>
+<h3 id="the-math">The Math</h3>
+<p>For an input vector $x$, layer normalization computes:</p>
+<p>$$\text{LayerNorm}(x) = \gamma \cdot \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta$$</p>
+<p>Where:</p>
+<ul>
+<li>$\mu$ is the mean of the features</li>
+<li>$\sigma^2$ is the variance of the features</li>
+<li>$\gamma$ and $\beta$ are learnable parameters</li>
+<li>$\epsilon$ is a small constant for numerical stability</li>
+</ul>
+<h3 id="the-code">The Code</h3>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">LayerNorm</span><span style="color:#eff1f5;">:
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__init__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">dims</span><span>, </span><span style="color:#bf616a;">eps</span><span>=</span><span style="color:#d08770;">1e-6</span><span>):
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.eps = eps
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.gamma = np.</span><span style="color:#bf616a;">ones</span><span>(dims)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.beta = np.</span><span style="color:#bf616a;">zeros</span><span>(dims)
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__call__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">x</span><span>):
+</span><span>        mu = np.</span><span style="color:#bf616a;">mean</span><span>(x, </span><span style="color:#bf616a;">axis</span><span>=-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">keepdims</span><span>=</span><span style="color:#d08770;">True</span><span>)
+</span><span>        var = np.</span><span style="color:#bf616a;">var</span><span>(x, </span><span style="color:#bf616a;">axis</span><span>=-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">keepdims</span><span>=</span><span style="color:#d08770;">True</span><span>)
+</span><span>        x_norm = (x - mu) / np.</span><span style="color:#bf616a;">sqrt</span><span>(var + </span><span style="color:#bf616a;">self</span><span>.eps)
+</span><span>        </span><span style="color:#b48ead;">return </span><span style="color:#bf616a;">self</span><span>.gamma * x_norm + </span><span style="color:#bf616a;">self</span><span>.beta
+</span></code></pre>
+<p>The implementation follows the mathematical definition directly. We compute the mean and variance along the feature dimension, normalize the input, and then scale and shift using the learnable parameters <code>gamma</code> and <code>beta</code>.</p>
+<h2 id="multi-head-attention">Multi-Head Attention</h2>
+<p>Attention mechanisms allow the model to focus on relevant parts of the input sequence when producing an output. Multi-head attention runs multiple attention mechanisms in parallel, allowing the model to attend to information from different representation subspaces.</p>
+<h3 id="the-math-1">The Math</h3>
+<p>The scaled dot-product attention is defined as:</p>
+<p>$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$</p>
+<p>Where:</p>
+<ul>
+<li>$Q$ (query), $K$ (key), and $V$ (value) are matrices</li>
+<li>$d_k$ is the dimension of the keys</li>
+</ul>
+<p>Multi-head attention is computed as:</p>
+<p>$$\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O$$</p>
+<p>Where each head is:</p>
+<p>$$\text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)$$</p>
+<h3 id="the-code-1">The Code</h3>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">MultiHeadAttention</span><span style="color:#eff1f5;">:
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__init__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">d_model</span><span>, </span><span style="color:#bf616a;">num_heads</span><span>):
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.d_model = d_model
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.num_heads = num_heads
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.d_k = d_model // num_heads
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.W_q = np.random.</span><span style="color:#bf616a;">randn</span><span>(d_model, d_model) * </span><span style="color:#d08770;">0.01
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.W_k = np.random.</span><span style="color:#bf616a;">randn</span><span>(d_model, d_model) * </span><span style="color:#d08770;">0.01
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.W_v = np.random.</span><span style="color:#bf616a;">randn</span><span>(d_model, d_model) * </span><span style="color:#d08770;">0.01
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.W_o = np.random.</span><span style="color:#bf616a;">randn</span><span>(d_model, d_model) * </span><span style="color:#d08770;">0.01
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">split_heads</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">x</span><span>):
+</span><span>        batch_size = x.shape[</span><span style="color:#d08770;">0</span><span>]
+</span><span>        x = x.</span><span style="color:#bf616a;">reshape</span><span>(batch_size, -</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">self</span><span>.num_heads, </span><span style="color:#bf616a;">self</span><span>.d_k)
+</span><span>        </span><span style="color:#b48ead;">return </span><span>x.</span><span style="color:#bf616a;">transpose</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">3</span><span>)
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">scaled_dot_product_attention</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">Q</span><span>, </span><span style="color:#bf616a;">K</span><span>, </span><span style="color:#bf616a;">V</span><span>, </span><span style="color:#bf616a;">mask</span><span>=</span><span style="color:#d08770;">None</span><span>):
+</span><span>        scores = np.</span><span style="color:#bf616a;">matmul</span><span>(Q, K.</span><span style="color:#bf616a;">transpose</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">3</span><span>, </span><span style="color:#d08770;">2</span><span>)) / np.</span><span style="color:#bf616a;">sqrt</span><span>(</span><span style="color:#bf616a;">self</span><span>.d_k)
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">if </span><span>mask is not </span><span style="color:#d08770;">None</span><span>:
+</span><span>            scores = np.</span><span style="color:#bf616a;">where</span><span>(mask == </span><span style="color:#d08770;">0</span><span>, -</span><span style="color:#d08770;">1e9</span><span>, scores)
+</span><span>        
+</span><span>        attention_weights = np.</span><span style="color:#bf616a;">exp</span><span>(scores) / np.</span><span style="color:#bf616a;">sum</span><span>(np.</span><span style="color:#bf616a;">exp</span><span>(scores), </span><span style="color:#bf616a;">axis</span><span>=-</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">keepdims</span><span>=</span><span style="color:#d08770;">True</span><span>)
+</span><span>        </span><span style="color:#b48ead;">return </span><span>np.</span><span style="color:#bf616a;">matmul</span><span>(attention_weights, V)
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__call__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">Q</span><span>, </span><span style="color:#bf616a;">K</span><span>, </span><span style="color:#bf616a;">V</span><span>, </span><span style="color:#bf616a;">mask</span><span>=</span><span style="color:#d08770;">None</span><span>):
+</span><span>        batch_size = Q.shape[</span><span style="color:#d08770;">0</span><span>]
+</span><span>
+</span><span>        Q = np.</span><span style="color:#bf616a;">matmul</span><span>(Q, </span><span style="color:#bf616a;">self</span><span>.W_q)
+</span><span>        K = np.</span><span style="color:#bf616a;">matmul</span><span>(K, </span><span style="color:#bf616a;">self</span><span>.W_k)
+</span><span>        V = np.</span><span style="color:#bf616a;">matmul</span><span>(V, </span><span style="color:#bf616a;">self</span><span>.W_v)
+</span><span>
+</span><span>        Q = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">split_heads</span><span>(Q)
+</span><span>        K = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">split_heads</span><span>(K)
+</span><span>        V = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">split_heads</span><span>(V)
+</span><span>
+</span><span>        scaled_attention = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">scaled_dot_product_attention</span><span>(Q, K, V, mask)
+</span><span>
+</span><span>        scaled_attention = scaled_attention.</span><span style="color:#bf616a;">transpose</span><span>(</span><span style="color:#d08770;">0</span><span>, </span><span style="color:#d08770;">2</span><span>, </span><span style="color:#d08770;">1</span><span>, </span><span style="color:#d08770;">3</span><span>)
+</span><span>        concat_attention = scaled_attention.</span><span style="color:#bf616a;">reshape</span><span>(batch_size, -</span><span style="color:#d08770;">1</span><span>, </span><span style="color:#bf616a;">self</span><span>.d_model)
+</span><span>        output = np.</span><span style="color:#bf616a;">matmul</span><span>(concat_attention, </span><span style="color:#bf616a;">self</span><span>.W_o)
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">return </span><span>output
+</span></code></pre>
+<p>The implementation follows these steps:</p>
+<ol>
+<li>Project the input matrices using the weight matrices $W_q$, $W_k$, and $W_v$</li>
+<li>Split the projected matrices into multiple heads</li>
+<li>Compute scaled dot-product attention for each head</li>
+<li>Concatenate the attention outputs and project using $W_o$</li>
+</ol>
+<p>The <code>split_heads</code> function reshapes the input to separate the heads dimension, and the <code>scaled_dot_product_attention</code> function implements the attention mechanism with optional masking.</p>
+<h2 id="positional-encoding">Positional Encoding</h2>
+<p>Since the Transformer doesn't have recurrence or convolution, it needs positional encoding to make use of the order of the sequence. The original paper uses sine and cosine functions of different frequencies.</p>
+<h3 id="the-math-2">The Math</h3>
+<p>For position $pos$ and dimension $i$, the positional encoding is:</p>
+<p>$$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$
+$$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right)$$</p>
+<p>Where:</p>
+<ul>
+<li>$pos$ is the position in the sequence</li>
+<li>$i$ is the dimension index</li>
+<li>$d_{model}$ is the model's dimension</li>
+</ul>
+<h3 id="the-code-2">The Code</h3>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">PositionalEncoding</span><span style="color:#eff1f5;">:
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__init__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">d_model</span><span>, </span><span style="color:#bf616a;">max_seq_length</span><span>=</span><span style="color:#d08770;">5000</span><span>):
+</span><span>        pe = np.</span><span style="color:#bf616a;">zeros</span><span>((max_seq_length, d_model))
+</span><span>        position = np.</span><span style="color:#bf616a;">arange</span><span>(</span><span style="color:#d08770;">0</span><span>, max_seq_length)[:, np.newaxis]
+</span><span>        div_term = </span><span style="color:#d08770;">10000.0 </span><span>**(np.</span><span style="color:#bf616a;">arange</span><span>(</span><span style="color:#d08770;">0</span><span>, d_model, </span><span style="color:#d08770;">2</span><span>) / d_model)
+</span><span>        pe[:, </span><span style="color:#d08770;">0</span><span>::</span><span style="color:#d08770;">2</span><span>] = np.</span><span style="color:#bf616a;">sin</span><span>(position / div_term)
+</span><span>        pe[:, </span><span style="color:#d08770;">1</span><span>::</span><span style="color:#d08770;">2</span><span>] = np.</span><span style="color:#bf616a;">cos</span><span>(position / div_term)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.pe = pe[np.newaxis, :, :]
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__call__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">x</span><span>):
+</span><span>        </span><span style="color:#b48ead;">return </span><span>x + </span><span style="color:#bf616a;">self</span><span>.pe[:, :x.shape[</span><span style="color:#d08770;">1</span><span>], :]
+</span></code></pre>
+<p>The implementation creates a matrix of positional encodings for each position and dimension. Even dimensions use sine functions, and odd dimensions use cosine functions. The positional encoding is added to the input embeddings.</p>
+<h2 id="position-wise-feed-forward-networks">Position-wise Feed-Forward Networks</h2>
+<p>Each position in the sequence is processed by the same feed-forward network, which consists of two linear transformations with a ReLU activation in between.</p>
+<h3 id="the-math-3">The Math</h3>
+<p>The feed-forward network is defined as:</p>
+<p>$$\text{FFN}(x) = \max(0, xW_1 + b_1)W_2 + b_2$$</p>
+<p>Where:</p>
+<ul>
+<li>$W_1$, $W_2$, $b_1$, and $b_2$ are learnable parameters</li>
+<li>$\max(0, x)$ is the ReLU activation function</li>
+</ul>
+<h3 id="the-code-3">The Code</h3>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">PositionWiseFFN</span><span style="color:#eff1f5;">:
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__init__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">d_model</span><span>, </span><span style="color:#bf616a;">d_ff</span><span>):
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.W_1 = np.random.</span><span style="color:#bf616a;">randn</span><span>(d_model, d_ff) * </span><span style="color:#d08770;">0.01
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.W_2 = np.random.</span><span style="color:#bf616a;">randn</span><span>(d_ff, d_model) * </span><span style="color:#d08770;">0.01
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.b1 = np.</span><span style="color:#bf616a;">zeros</span><span>(d_ff)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.b2 = np.</span><span style="color:#bf616a;">zeros</span><span>(d_model)
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__call__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">x</span><span>):
+</span><span>        Y1 = np.</span><span style="color:#bf616a;">matmul</span><span>(x, </span><span style="color:#bf616a;">self</span><span>.W_1) + </span><span style="color:#bf616a;">self</span><span>.b1
+</span><span>        Y1 = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">relu</span><span>(Y1)
+</span><span>        Y2 = np.</span><span style="color:#bf616a;">matmul</span><span>(Y1, </span><span style="color:#bf616a;">self</span><span>.W_2) + </span><span style="color:#bf616a;">self</span><span>.b2
+</span><span>        </span><span style="color:#b48ead;">return </span><span>Y2
+</span><span>
+</span><span>    @</span><span style="color:#96b5b4;">staticmethod
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">relu</span><span>(</span><span style="color:#bf616a;">x</span><span>):
+</span><span>        </span><span style="color:#b48ead;">return </span><span>np.</span><span style="color:#bf616a;">maximum</span><span>(</span><span style="color:#d08770;">0</span><span>, x)
+</span></code></pre>
+<p>The implementation follows the mathematical definition directly. It applies two linear transformations with a ReLU activation in between.</p>
+<h2 id="encoder-and-decoder-layers">Encoder and Decoder Layers</h2>
+<p>The encoder and decoder layers combine the components we've discussed to process the input and output sequences.</p>
+<h3 id="encoder-layer">Encoder Layer</h3>
+<p>Each encoder layer has two sub-layers:</p>
+<ol>
+<li>Multi-head self-attention</li>
+<li>Position-wise feed-forward network</li>
+</ol>
+<p>Each sub-layer has a residual connection followed by layer normalization.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">EncoderLayer</span><span style="color:#eff1f5;">:
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__init__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">d_model</span><span>, </span><span style="color:#bf616a;">num_heads</span><span>, </span><span style="color:#bf616a;">d_ff</span><span>, </span><span style="color:#bf616a;">dropout_rate</span><span>=</span><span style="color:#d08770;">0.1</span><span>):
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.mha = </span><span style="color:#bf616a;">MultiHeadAttention</span><span>(d_model, num_heads)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.ffn = </span><span style="color:#bf616a;">PositionWiseFFN</span><span>(d_model, d_ff)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.layernorm1 = </span><span style="color:#bf616a;">LayerNorm</span><span>(d_model)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.layernorm2 = </span><span style="color:#bf616a;">LayerNorm</span><span>(d_model)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.dropout_rate = dropout_rate
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__call__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">x</span><span>, </span><span style="color:#bf616a;">mask</span><span>=</span><span style="color:#d08770;">None</span><span>):
+</span><span>        attn_output = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">mha</span><span>(x, x, x, mask)
+</span><span>        out1 = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">layernorm1</span><span>(x + attn_output)  </span><span style="color:#65737e;"># residual connection
+</span><span>        ffn_output = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">ffn</span><span>(out1)
+</span><span>        out2 = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">layernorm2</span><span>(out1 + ffn_output)  </span><span style="color:#65737e;"># residual connection
+</span><span>        </span><span style="color:#b48ead;">return </span><span>out2
+</span></code></pre>
+<h3 id="decoder-layer">Decoder Layer</h3>
+<p>Each decoder layer has three sub-layers:</p>
+<ol>
+<li>Masked multi-head self-attention</li>
+<li>Multi-head attention over the encoder output</li>
+<li>Position-wise feed-forward network</li>
+</ol>
+<p>Each sub-layer has a residual connection followed by layer normalization.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">DecoderLayer</span><span style="color:#eff1f5;">:
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__init__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">d_model</span><span>, </span><span style="color:#bf616a;">num_heads</span><span>, </span><span style="color:#bf616a;">d_ff</span><span>, </span><span style="color:#bf616a;">dropout_rate</span><span>=</span><span style="color:#d08770;">0.1</span><span>):
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.mha1 = </span><span style="color:#bf616a;">MultiHeadAttention</span><span>(d_model, num_heads)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.mha2 = </span><span style="color:#bf616a;">MultiHeadAttention</span><span>(d_model, num_heads)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.ffn = </span><span style="color:#bf616a;">PositionWiseFFN</span><span>(d_model, d_ff)
+</span><span>
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.layernorm1 = </span><span style="color:#bf616a;">LayerNorm</span><span>(d_model)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.layernorm2 = </span><span style="color:#bf616a;">LayerNorm</span><span>(d_model)
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.layernorm3 = </span><span style="color:#bf616a;">LayerNorm</span><span>(d_model)
+</span><span>
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.dropout_rate = dropout_rate
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__call__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">x</span><span>, </span><span style="color:#bf616a;">enc_output</span><span>, </span><span style="color:#bf616a;">look_ahead_mask</span><span>=</span><span style="color:#d08770;">None</span><span>, </span><span style="color:#bf616a;">padding_mask</span><span>=</span><span style="color:#d08770;">None</span><span>):
+</span><span>        attn1 = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">mha1</span><span>(x, x, x, look_ahead_mask)
+</span><span>        out1 = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">layernorm1</span><span>(attn1 + x)  </span><span style="color:#65737e;"># residual connection
+</span><span>
+</span><span>        attn2 = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">mha2</span><span>(out1, enc_output, enc_output, padding_mask)
+</span><span>        out2 = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">layernorm2</span><span>(attn2 + out1)  </span><span style="color:#65737e;"># residual connection
+</span><span>
+</span><span>        ffn_output = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">ffn</span><span>(out2)
+</span><span>        out3 = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">layernorm3</span><span>(ffn_output + out2)  </span><span style="color:#65737e;"># residual connection
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">return </span><span>out3
+</span></code></pre>
+<h2 id="the-complete-transformer">The Complete Transformer</h2>
+<p>The complete Transformer combines the encoder and decoder layers, along with embedding layers and a final linear projection.</p>
+<pre data-lang="python" style="background-color:#2b303b;color:#c0c5ce;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#b48ead;">class </span><span style="color:#ebcb8b;">Transformer</span><span style="color:#eff1f5;">:
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__init__</span><span>(
+</span><span>        </span><span style="color:#bf616a;">self</span><span>,
+</span><span>        </span><span style="color:#bf616a;">num_layers</span><span>,
+</span><span>        </span><span style="color:#bf616a;">d_model</span><span>,
+</span><span>        </span><span style="color:#bf616a;">num_heads</span><span>,
+</span><span>        </span><span style="color:#bf616a;">d_ff</span><span>,
+</span><span>        </span><span style="color:#bf616a;">input_vocab_size</span><span>,
+</span><span>        </span><span style="color:#bf616a;">target_vocab_size</span><span>,
+</span><span>        </span><span style="color:#bf616a;">max_seq_length</span><span>=</span><span style="color:#d08770;">5000</span><span>,
+</span><span>        </span><span style="color:#bf616a;">dropout_rate</span><span>=</span><span style="color:#d08770;">0.1
+</span><span>    ):
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.encoder_embedding = np.random.</span><span style="color:#bf616a;">randn</span><span>(input_vocab_size, d_model) * </span><span style="color:#d08770;">0.01
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.decoder_embedding = np.random.</span><span style="color:#bf616a;">randn</span><span>(target_vocab_size, d_model) * </span><span style="color:#d08770;">0.01
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.positional_encoding = </span><span style="color:#bf616a;">PositionalEncoding</span><span>(d_model, max_seq_length)
+</span><span>
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.encoder_layers = [
+</span><span>            </span><span style="color:#bf616a;">EncoderLayer</span><span>(d_model, num_heads, d_ff, dropout_rate)
+</span><span>            </span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">_ </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(num_layers)
+</span><span>        ]
+</span><span>
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.decoder_layers = [
+</span><span>            </span><span style="color:#bf616a;">DecoderLayer</span><span>(d_model, num_heads, d_ff, dropout_rate)
+</span><span>            </span><span style="color:#b48ead;">for </span><span style="color:#bf616a;">_ </span><span style="color:#b48ead;">in </span><span style="color:#96b5b4;">range</span><span>(num_layers)
+</span><span>        ]
+</span><span>
+</span><span>        </span><span style="color:#bf616a;">self</span><span>.final_layer = np.random.</span><span style="color:#bf616a;">randn</span><span>(d_model, target_vocab_size) * </span><span style="color:#d08770;">0.01
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">encode</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">x</span><span>, </span><span style="color:#bf616a;">mask</span><span>=</span><span style="color:#d08770;">None</span><span>):
+</span><span>        x = np.</span><span style="color:#bf616a;">matmul</span><span>(x, </span><span style="color:#bf616a;">self</span><span>.encoder_embedding)
+</span><span>        x = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">positional_encoding</span><span>(x)
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">for </span><span>layer </span><span style="color:#b48ead;">in </span><span style="color:#bf616a;">self</span><span>.encoder_layers:
+</span><span>            x = </span><span style="color:#bf616a;">layer</span><span>(x, mask)
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">return </span><span>x
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#8fa1b3;">decode</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">x</span><span>, </span><span style="color:#bf616a;">enc_output</span><span>, </span><span style="color:#bf616a;">look_ahead_mask</span><span>=</span><span style="color:#d08770;">None</span><span>, </span><span style="color:#bf616a;">padding_mask</span><span>=</span><span style="color:#d08770;">None</span><span>):
+</span><span>        x = np.</span><span style="color:#bf616a;">matmul</span><span>(x, </span><span style="color:#bf616a;">self</span><span>.decoder_embedding)
+</span><span>        x = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">positional_encoding</span><span>(x)
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">for </span><span>layer </span><span style="color:#b48ead;">in </span><span style="color:#bf616a;">self</span><span>.decoder_layers:
+</span><span>            x = </span><span style="color:#bf616a;">layer</span><span>(x, enc_output, look_ahead_mask, padding_mask)
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">return </span><span>x
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">def </span><span style="color:#96b5b4;">__call__</span><span>(</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">inputs</span><span>, </span><span style="color:#bf616a;">targets</span><span>=</span><span style="color:#d08770;">None</span><span>):
+</span><span>        enc_output = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">encode</span><span>(inputs)
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">if </span><span>targets is not </span><span style="color:#d08770;">None</span><span>:
+</span><span>            dec_output = </span><span style="color:#bf616a;">self</span><span>.</span><span style="color:#bf616a;">decode</span><span>(targets, enc_output)
+</span><span>            final_output = np.</span><span style="color:#bf616a;">matmul</span><span>(dec_output, </span><span style="color:#bf616a;">self</span><span>.final_layer)
+</span><span>            </span><span style="color:#b48ead;">return </span><span>final_output
+</span><span>        
+</span><span>        </span><span style="color:#b48ead;">return </span><span>enc_output
+</span></code></pre>
+<p>The Transformer's forward pass consists of:</p>
+<ol>
+<li>Embedding the input and adding positional encoding</li>
+<li>Passing the embedded input through the encoder layers</li>
+<li>If targets are provided, embedding them and passing through the decoder layers</li>
+<li>Projecting the decoder output to the target vocabulary size</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this blog post, we've explored a pure NumPy implementation of the Transformer architecture. By breaking down each component and examining both the mathematics and the code, we've gained a deeper understanding of how Transformers work.</p>
+<p>The key insights from this implementation are:</p>
+<ol>
+<li><strong>Parallelization</strong>: Unlike RNNs, Transformers process the entire sequence in parallel, making them more efficient for training.</li>
+<li><strong>Attention Mechanisms</strong>: The multi-head attention allows the model to focus on different parts of the input sequence.</li>
+<li><strong>Positional Information</strong>: Since there's no recurrence, positional encoding is crucial for the model to understand sequence order.</li>
+<li><strong>Residual Connections</strong>: These connections help with gradient flow during training.</li>
+</ol>
+<p>This NumPy implementation serves as an educational tool to understand the inner workings of Transformers. For practical applications, you would typically use deep learning frameworks like PyTorch or TensorFlow, which provide optimized implementations and automatic differentiation.</p>
+<p>By understanding the fundamentals of Transformers, you're better equipped to work with modern NLP models like BERT, GPT, and T5, which build upon this architecture.</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... &amp; Polosukhin, I. (2017). <a href="https://arxiv.org/abs/1706.03762">Attention is all you need</a>. In Advances in neural information processing systems.</li>
+<li>Ba, J. L., Kiros, J. R., &amp; Hinton, G. E. (2016). <a href="https://arxiv.org/abs/1607.06450">Layer normalization</a>. arXiv preprint arXiv:1607.06450.</li>
+<li>Alammar, J. (2018). <a href="http://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a>.</li>
+<li>Rush, A. (2018). <a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html">The Annotated Transformer</a>.</li>
+</ol>
+
+          </div>
+        </article>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+  
+  <section class="modal" id="search-modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Search</p>
+      </header>
+      <section class="modal-card-body">
+        <div class="field mb-2">
+          <div class="control">
+            <input class="input" id="search" placeholder="Search this website." type="search" />
+          </div>
+        </div>
+        <div class="search-results">
+          <div class="search-results__items"></div>
+        </div>
+      </section>
+    </div>
+    <button aria-label="close" class="modal-close is-large"></button>
+  </section>
+  
+
+
+  
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <nav class="level">
+              
+          <div class="level-item has-text-centered">
+            <a class="button is-black is-outlined" href="https:&#x2F;&#x2F;tim-xiong.github.io&#x2F;posts&#x2F;post-0&#x2F;">
+              <span class="icon mr-2">
+                <i class="fas fa-arrow-circle-left"></i>
+              </span>
+              Running Deepseek R1 Locally: A Step-by-Step Guide
+            </a>
+          </div>
+           
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  
+
+
+
+  
+  <footer class="footer py-4">
+    <div class="content has-text-centered">
+      <p>
+        Built with
+        <span class="icon-text">
+          <span class="icon">
+            <i class="fas fa-code"></i>
+          </span>
+          <span>code</span>
+        </span>
+        and
+        <span class="icon-text">
+          <span class="icon">
+            <i class="fas fa-heart"></i>
+          </span>
+          <span>love</span>
+        </span>
+      </p>
+      <p>
+        Powered by
+        <span class="icon-text">
+          <span class="icon">
+            <i class="fas fa-power-off"></i>
+          </span>
+          <span>zola</span>
+        </span>
+      </p>
+    </div>
+  </footer>
+  
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/galleria.min.js" integrity="sha384-QSfwGT8/EU536DKdtyP2D6SLlh8zBaZ0cVkwfrwhqzIU9VCfJT00CLVP5t+HAiYg" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/themes/folio/galleria.folio.min.js" integrity="sha384-DwpKI+deZB267+hPKwiOIc5Y2GKsVL0mR6hgz7GgIu7AgAMYqJwcJKY1YBNfhWcY" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@8.13.5/dist/mermaid.min.js" integrity="sha384-0yWn54pSGtfKCU+skfA69l25VsCw+MZt4LQov3xNRoS7YkAMrFokGgSBnAWSK4pv" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.xkcd@1.1.13/dist/chart.xkcd.min.js" integrity="sha384-xC3h1+IHXK8seA+8KfT79Z4e0GPsznjXBoMa5nd8ooWKplPyXx92NOmljWxLC/cs" crossorigin="anonymous"></script>
+  
+  
+  <script src="https://tim-xiong.github.io/elasticlunr.min.js"></script>
+  <script src="https://tim-xiong.github.io/search_index.en.js"></script><script src="https://tim-xiong.github.io/js/site.js"></script>
+
+  
+
+
+
+
+
+  
+  
+</body>
+
+</html>
